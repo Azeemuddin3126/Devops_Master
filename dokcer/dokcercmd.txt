@@ -1,0 +1,74 @@
+sudo docker login
+sudo docker run Hello-world
+sudo docker images
+sudo docker pull centos
+sudo docker images
+docker pull [image name]:[tag name]
+sudo docker pull ubuntu:18.04
+docker run --name go-container golang:1.19.0
+sudo docker run centos
+sudo docker container ls
+sudo docker container ls -a
+sudo docker ps -a
+sudo docker run -d -t --name demo centos
+sudo docker container ls
+sudo docker run -d -t --name demo2 centos
+sudo docker stop demo
+sudo docker stop $(sudo docker container ls -q)
+sudo docker start demo
+sudo docker kill demo
+sudo docker container ls -a
+sudo docker pause demo
+sudo docker container ls
+sudo docker unpause demo
+sudo docker top demo
+sudo docker stats demo
+sudo docker exec -it demo /bin/bash #interact 
+docker rm -f
+sudo docker rm demo
+sudo docker container ls -a
+sudo docker rm $(sudo docker container ls -a -q)
+sudo docker rmi centos
+sudo docker rmi $(sudo docker images -q)
+
+FROM centos
+ADD . /code
+WORKDIR /code
+ENTRYPOINT ["bash", "evenOdd.sh"]
+
+sudo docker build code/
+sudo docker build -t even-odd code/
+sudo docker run -d --name web_server python_server
+sudo docker rm web_server
+
+RUN - Dockerfile command to execute code on the image
+FROM - Dockerfile command to set the base image
+WORKDIR - Dockerfile command to indicate the working directory
+COPY - Dockerfile command to transfer files to the image
+ENTRYPOINT - Dockerfile command to set the command to run when the image starts
+
+Super-secret password
+sudo docker build -t even-odd:0.2 code/
+sudo docker run -d -t --name secrets even-odd:0.2
+sudo docker exec -it secrets bash
+cat passwords.txt
+
+sudo docker tag ruby my-account/ruby
+sudo docker push my-account/ruby:v1
+
+FROM ubuntu
+ADD . /project
+WORKDIR /project
+RUN apt install python
+ENTRYPOINT ["python", "main.py"]
+sudo docker build -t my-image proj5/
+sudo usermod -aG docker $(whoami) && newgrp docker
+
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install -y curl apt-transport-https
+wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+chmod +x minikube-linux-amd64
+sudo mv minikube-linux-amd64 /usr/local/bin/minikube
+minikube version
+sudo usermod -aG docker $(whoami) && newgrp docker

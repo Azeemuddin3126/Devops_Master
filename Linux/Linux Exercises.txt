@@ -1,0 +1,39 @@
+cd myfiles
+
+echo 'Hello world!' > file1.txt
+
+mv file1.txt hello.txt
+
+
+1.Use the awk command to count the number of words in the file wh.txt and output the result to a file named wordcount.txt
+
+-- awk '{ total = total + NF }; END {print total}' wh.txt > wordcount.txt
+
+2.Use a command to list all the versions of grep in the bin directory to a file named grepversions.txt.
+Note: make sure you are listing files only!
+
+--find /bin -type f -name "*grep*" > grepversions.txt
+
+3.Find all the lines in wh.txt that do not contain the word “Heathcliff” and output the result to a file called noheath.txt
+
+-- grep -v Heathcliff wh.txt > noheath.txt
+
+-- awk '!/Heathcliff/' wh.txt > noheath.txt
+
+-- sed '/Heathcliff/d' wh.txt > noheath.txt
+
+
+zip images.zip images/etc.png images/filelist.png images/prezip.png
+
+zip images.zip images/{etc,filelist,prezip}.png
+
+dd if=testupper.txt of=testlower.txt conv=lcase
+
+ln -s files/test/myfile.txt thelink.txt
+
+
+vim myfile
+
+pkill -9 vim
+
+

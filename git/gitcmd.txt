@@ -1,0 +1,193 @@
+sudo apt-get install git
+git config --global user.name "YOUR USERNAME"
+git config --global user.email "YOUR EMAIL"
+git config --global core.editor "nano"
+git config --global color.ui true
+--------------------------------------
+ Adding
+-----------------------------------------
+git init
+git status
+git add .	Only stage new and altered files
+git add -A	Stage all project modifications
+git add -u	Only stage altered and deleted files
+git restore --staged --- unstage
+git rm --cached userInfo.sh
+-------------------------------------
+ Committing
+-----------------------------------
+git commit -m "Our first commit: Generate User Login Report" 
+git log
+--------------------------------
+ .gitignore
+--------------------------------------
+touch gitignore
+nano .gitignore
+ daily.log
+ .DS_Store.       # Commonly found on Mac
+ *.gif.           # All files ending in .gif
+ workspace/images # All files inside the images directory
+ ^Backup          # Any files that begin with Backup
+ echo "Reporting Current Running Processes"; echo
+ ps auxw | grep "codio"
+ echo "Reporting User Group IDs"; echo
+ id
+ echo "Reporting Group IDs for user codio"; echo
+ id codio
+----------------------------------
+ Branching
+-------------------------------
+git branch
+git checkout -b reporting-features
+git switch -c dev-branch
+git log --oneline
+git diff master..reporting-features
+---------------------------------
+  Merging and Conflicts
+---------------------------
+git checkout master
+git branch 
+git merge reporting-features
+git diff master..reporting-features
+git status
+-------------------------
+ Pushing to GitHub
+----------------------
+echo "Hello Github!" > test.txt
+git add test.txt
+git commit -m "test file"
+git push -u origin master
+git push
+git push —set-upstream origin master
+---------------------------
+ Cloning
+-----------------------
+git clone <link>
+git remote -v  
+--------------
+ Pull
+---------
+git pull
+git remote add origin URLFromGitHub
+git remote -v
+git push -u origin master
+
+-----------------------
+ remote
+-----------------
+Create a Remote Repository on GitHub
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/your-username/repoProject.git
+git remote -v
+git push -u origin master
+du -h -a --threshold=500M
+---------------------
+# Basic Commands
+git clone <repository-url>             # Clone a repository from a URL
+git status                              # Check the status of the repository
+git add <file>                          # Add changes to the staging area
+git commit -m "Commit message"          # Commit changes with a message
+git push origin <branch-name>           # Push changes to a remote repository
+git pull origin <branch-name>           # Pull changes from a remote repository
+git log                                 # View commit history
+git diff                                # View differences between changes
+
+# Branching Commands
+git branch <branch-name>                # Create a new branch
+git checkout <branch-name>              # Switch to a specific branch
+git checkout -b <branch-name>           # Create and switch to a new branch
+git merge <branch-name>                  # Merge a branch into the current branch
+git branch -d <branch-name>              # Delete a branch
+
+# Remote Commands
+git remote add <name> <repository-url>  # Add a remote repository
+git remote -v                            # View remote repositories
+git fetch <remote-name>                  # Fetch changes from a remote repository
+git remote remove <remote-name>          # Remove a remote
+git remote rename <old-name> <new-name>  # Rename a remote
+
+# Stashing Commands
+git stash                                # Stash changes temporarily
+git stash apply                          # Apply stashed changes
+git stash list                           # List stashed changes
+
+# Tagging Commands
+git tag <tag-name>                      # Create a new tag
+git push origin --tags                   # Push all tags to remote
+git tag -d <tag-name>                   # Delete a tag
+git push origin <tag-name>               # Push a specific tag
+
+# Reverting and Resetting
+git revert <commit-hash>                # Revert a commit
+git reset <file>                        # Reset the staging area for a specific file
+git reset --hard <commit-hash>           # Reset to a specific commit and discard changes
+
+# Configuration Commands
+git config --global user.email "you@example.com"  # Set user email
+git config --global user.name "Your Name"          # Set user name
+git config --list                               # Show current configuration
+git config --global --unset <key>               # Unset a configuration key
+
+# Viewing Changes
+git diff --cached                             # Show staged changes
+git diff <file>                               # Show changes for a specific file
+
+# Handling Conflicts
+git add <file>                                # Mark conflict as resolved
+git merge --abort                              # Abort a merge
+git rebase --abort                             # Abort a rebase
+
+# Cherry-picking
+git cherry-pick <commit-hash>                 # Apply a commit from another branch
+
+# Cleanup
+git clean -f                                  # Clean untracked files
+git clean -fd                                 # Clean untracked directories
+
+# Best Practices
+# - Keep commits small and focused.
+# - Use meaningful commit messages.
+# - Regularly pull from the main branch.
+
+# Useful Tips
+git config --global alias.co checkout        # Create an alias for 'checkout'
+
+------------------------------------------
+
+
+
+du -sh
+du -s -h
+du -hs
+du -h -s
+
+df -h --total
+df --total -h
+df --human-readable --total
+df --total --human-readable
+----------------------------
+ Networking
+---------------------------
+ping google.com -c 15
+ifconfig
+ip address
+ss 
+ping google.com -i 1 -c 5 -q
+netstat -s  -t -l p-u
+dig amazon.com
+whois facebook.com
+ping google.com 
+ping pinterest.com -qc 10
+-----------------------------------
+ SSH
+-----------------
+ssh-keygen
+curl https://pixnio.com/free-images/2017/09/26/2017-09-26-09-42-06-1100x733.jpg --output cat.jpg
+wget https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_960_720.jpg
+curl https://cdn.pixabay.com/photo/2019/10/09/06/06/gift-4536515_1280.png --output celebrate.png
+curl https://cdn.pixabay.com/photo/2019/10/09/06/06/gift-4536515_1280.png -o celebrate.png
+wget https://cdn.pixabay.com/photo/2019/10/09/06/06/gift-4536515_1280.png --output-document=celebrate.png
+wget https://cdn.pixabay.com/photo/2019/10/09/06/06/gift-4536515_1280.png -O celebrate.png
+rsync -avh foo/ bar/     

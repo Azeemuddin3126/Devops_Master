@@ -1,0 +1,137 @@
+minikube start
+kubectl cluster-info
+kubectl run cpu-demo --image=vish/stress
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+---------------------------------------
+ Deploying a Simple Node.js App
+--------------------------------------
+mkdir node-app && cd node-app
+----------------------------
+app.js
+
+echo 'const http = require("http");
+
+const requestListener = function (req, res) {
+  res.writeHead(200);
+  res.end("Hello, Kubernetes World!");
+}
+
+const server = http.createServer(requestListener);
+server.listen(8080);' > app.js
+-----------------------------------------
+echo 'FROM node:14
+WORKDIR /usr/src/app
+COPY . .
+EXPOSE 8080
+CMD [ "node", "app.js" ]' > Dockerfile
+-----------------------------------------
+docker build -t <your-username>/node-app:latest .
+docker login
+docker push <your-username>/node-app:latest
+------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+  labels:
+    app: node-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+      - name: node-app
+        image: <your-username>/node-app:latest
+        ports:
+        - containerPort: 8080
+-------------------------------------------
+kubectl apply -f node-app-deployment.yaml
+kubectl expose deployment node-app --type=LoadBalancer --port=80 --target-port=8080
+kubectl get svc node-app
+
+ -------------------------------------
+ Monitoring Tools
+--------------------------------
+Prometheus
+Grafana
+Loki
+
+# Deploying the app
+kubectl apply -f deployment.yaml
+
+# Checking its status
+kubectl get deployments
+kubectl describe deployment my-app-deployment
+
+# Update the Docker image version used in the deployment
+kubectl set image deployment/my-app-deployment my-app=username/my-app:v2
+
+kubectl rollout undo deployment/my-app-deployment
+
+kubectl rollout status deployment/my-app-deployment
+-------------------------------------------------
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+  labels:
+    app: my-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app-container
+        image: my-app-image:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+---------------------------------------------------------------------
+
+#!/bin/bash
+
+# Start Minikube
+minikube start
+
+# Confirm Minikube started successfully
+if [ $? -ne 0 ]; then
+    echo "Failed to start Minikube. Exiting."
+    exit 1
+fi
+
+# Create a basic deployment in Kubernetes
+kubectl create deployment my-app --image=nginx
+
+# Expose the deployment as a service on port 80
+kubectl expose deployment my-app --type=NodePort --port=80
+
+# Get the URL for the Minikube service
+minikube service my-app --url
+
+# Optional: Display status of deployment and services
+kubectl get deployments
+kubectl get services
+
+----------------------------------------------------------------
+ 
+
