@@ -1,12 +1,12 @@
 #----------------------------------
-#printing
+ #printing
 #-----------------------------------
 print("hello world")
 print("hello", end='/n')#"", "\t", "\!"
 print("world")
 
 #----------------------------------
-#comments
+ #comments
 #-----------------------------------
 #comments
 '''
@@ -14,7 +14,7 @@ multi line
 '''
 
 #----------------------------------
-#Data Types
+ #Data Types
 #-----------------------------------
 my_variable = "Hello world"
 print(my_variable)
@@ -34,7 +34,7 @@ float_variable=50.0, 50., .001
 print(integer_variable,float_variable)
 
 #----------------------------------
-# Arthematcis Operations
+ # Arthematcis Operations
 #-----------------------------------
  
  #Operations
