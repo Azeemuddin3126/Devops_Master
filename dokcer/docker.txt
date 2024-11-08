@@ -1,0 +1,93 @@
+docker commands
+----------------------
+#Managing Services
+
+systemctl status/start/stop docker
+dockerd
+dockerd --debug
+
+--------------------------
+# basic cmds
+
+docker ps -a
+docker run
+docker images/containers
+docker pull
+dockers ls
+docker prune
+docker run -itd ubuntu bash(for run )
+docker start container/image
+docker ps
+docker rm (id)
+docker images -ltr
+docker exec it <nanme> bash
+docker inspect
+docker run -d -p 80:80 httpd
+docker stop $(docker ps -aq)
+sudo docker attach
+service <name> start
+docker commit <img> <dochubid/name>
+docker push <dochub/name>
+sudo docker run -d --name test -p 5000:5000 -p 8087:8080 -v myvol:/var/jenkins_home nginx
+
+----------------------------------
+
+#deployemnt
+
+docker run -d -p 80:exposed img
+docker run -p 8080:8080 --name=jenkins-master -d jenkins/jenkins
+
+---------------------------------------------------------
+#network
+
+docker network create --driver=host --subnet=192.168.
+
+creating new networks and connecting to container
+
+docker run -itd --name=test --net=customnet ubuntu
+
+docker network connect <netname> <image>
+
+-----------------------------------------------
+
+###communicating 2 docker conatiners with same network diff ports
+
+1.docker network ls
+2. docker network create --driver=bridge --subnet=192.168.1.0/24
+<net_name>
+3. docker container run –itd –name=<name> --net=codificationNet ubuntu4. docker network inspect <network id>
+5. docker network connect custom-net my-container
+6. docker network disconnect custom-net my-container
+7. docker network rm custom-net
+8. docker network prune
+
+----------------------------------------------
+
+Docker Volume Commands
+1. docker volume ls
+2. docker volume create data_volume
+3. docker run –v data_volume:/var/lib/mysql mysql (Volume mount)
+4. docker run -v /data/mysql:/var/lib/mysql mysql (Bind Mount)
+5. docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysqlmysql
+6. docker volume remove data_volume
+7. docker volume prune
+8. Read-only mounts – docker container run --mount source=data_volume, desitnation=/var/lib/data,readonly httpd
+
+---------------------------------------------
+
+## Monitoring and troubleshooting cmds
+
+docker stats
+docker logs <img>
+docker exec it <cmd>
+docker rename <old> <new>
+
+------------
+#restart policy
+
+docker run -d --name sp --restart dealfualr:no/always/unless-stopped/om-failure <img> sleep 10
+
+
+
+
+
