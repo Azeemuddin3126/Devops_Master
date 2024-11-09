@@ -169,6 +169,81 @@ def best_team(mlb_data):
 
 def is_palindrome(s):
     return s == s[::-1]
+
+#-----------------------------------
+ # Recusrion
+#--------------------------------
+
+def factorial(n):
+    """Calculate factorial recursively"""
+    if n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
     
+print(factorial(5))
+
+def fibonacci(n):
+    seq = [0, 1]
+    [seq.append(seq[-1] + seq[-2]) for _ in range(2, n)]
+    return seq[:n]
+
+#----------------------------------
+def recursive_sum(n):
+    if n <= 0:
+        return 0
+    return n + recursive_sum(n - 1)
+
+#-----------------------------------
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+#-------------------------------------------
+
+# Print the first 10 Fibonacci numbers
+for i in range(10):
+    print(fibonacci(i), end=" ")
+# Output: 0 1 1 2 3 5 8 13 21 34
+
+#----------------------------------
+
+def fibonacci_series(n):
+    sequence = [0, 1]
+    for i in range(2, n):
+        sequence.append(sequence[-1] + sequence[-2])
+    return sequence[:n]
+#-----------------------------
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+#--------------------------------
+
+def list_sum(numbers):
+    # Base case: if the list is empty, return 0
+    if not numbers:
+        return 0
+    # Recursive case: sum the first element and the sum of the rest
+    return numbers[0] + list_sum(numbers[1:])
+#-------------------------------------
+
+def reverse_string(s):
+    # Base case: if the string is empty or has one character, return it
+    if len(s) <= 1:
+        return s
+    # Recursive case: take the last character and call reverse_string on the rest
+    return s[-1] + reverse_string(s[:-1])
+#------------------------------------
+
+def get_max(nums):
+    # Base case: if the list has only one element, return that element
+    if len(nums) == 1:
+        return nums[0]
+    # Recursive case: compare the first element with the maximum of the rest of the list
+    return max(nums[0], get_max(nums[1:]))
+
 
 
