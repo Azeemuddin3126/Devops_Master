@@ -8,9 +8,9 @@ sleep 1
 echo commit
 read -p "Enter a commit msg: " cmt_msg 
 git commit -m $cmt_msg
-echo comitted
+echo comitted............
 sleep 1
 
-echo pusing to repo
+echo pusing to repo..............
 git push
 echo Completed!!!
