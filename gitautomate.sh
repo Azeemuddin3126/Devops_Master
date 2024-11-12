@@ -7,7 +7,7 @@ sleep 1
 
 echo commit
 read -p "Enter a commit msg: " cmt_msg 
-git commit -m $cmt_msg
+git commit -m "$cmt_msg" 
 echo comitted............
 sleep 1
 
