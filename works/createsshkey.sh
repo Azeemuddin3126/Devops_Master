@@ -19,4 +19,4 @@ echo done
 sleep 1
 
 cat ~/.ssh/id_ed25519.pub
-echo Done paste this in github key
+echo Done... paste this in github key

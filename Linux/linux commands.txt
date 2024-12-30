@@ -408,8 +408,28 @@ unzip images.zip
 ---------------------------------------
 
 
+Best Practices for Devops
+----------------------------------
 
+#bin/bash
 
+set -x # debugging
+set -e # exits completly if any errors occuers 
+set -o pipefail 
+
+df -h
+
+free -g
+
+nproc
+
+ps aux
+
+curl log file
+
+wget # to download
+
+find / -name <filename>
 
 
 
