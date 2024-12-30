@@ -1,34 +1,21 @@
 #!/bin/bash
 
-# Prompt for backup directory, use default if empty
-read -p "Enter backup directory (default: ~/backups): " BACKUP_DIR
-BACKUP_DIR="${BACKUP_DIR:-$HOME/backups}"
+# Configuration
+SOURCE_DIR="/path/to/source/directory"    # Replace with the path of the directory you want to back up
+BACKUP_DIR="/path/to/backup/directory"    # Replace with the path where backups should be stored
+DATE=$(date +'%Y-%m-%d_%H-%M-%S')         # Timestamp for the backup file name
+BACKUP_FILE="backup_$DATE.tar.gz"         # Backup file name with timestamp
+
+# Create backup directory if it doesn't exist
 mkdir -p "$BACKUP_DIR"
 
-# Function to backup directory
-backup() {
-    local src="$1"
-    local timestamp=$(date +"%Y%m%d_%H%M%S")
-    if [ -d "$src" ]; then
-        tar -czf "$BACKUP_DIR/$(basename "$src")_$timestamp.tar.gz" -C "$(dirname "$src")" "$(basename "$src")"
-        echo "Backup of directory '$src' created."
-    elif [ -f "$src" ]; then
-        cp "$src" "$BACKUP_DIR/$(basename "$src")_$timestamp.bak"
-        echo "Backup of file '$src' created."
-    else
-        echo "Error: '$src' is not a valid file or directory."
-    fi
-}
+# Perform the backup using tar
+tar -czf "$BACKUP_DIR/$BACKUP_FILE" -C "$SOURCE_DIR" .
 
-# Main script
-echo "1. Backup Directory"
-echo "2. Backup Single File"
-read -p "Select option (1 or 2): " option
-
-read -p "Enter path to backup: " PATH_TO_BACKUP
-case "$option" in
-    1) backup "$PATH_TO_BACKUP" ;;
-    2) backup "$PATH_TO_BACKUP" ;;
-    *) echo "Invalid option." ;;
-esac
-
+# Check if the backup was successful
+if [ $? -eq 0 ]; then
+    echo "Backup successful: $BACKUP_DIR/$BACKUP_FILE"
+else
+    echo "Backup failed!"
+    exit 1
+fi

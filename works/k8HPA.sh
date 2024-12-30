@@ -18,3 +18,5 @@ else
   echo "CPU utilization is normal ($CPU_UTILIZATION%). Scaling down the deployment."
   kubectl scale deployment "$DEPLOYMENT_NAME" -n "$NAMESPACE" --replicas=$MIN_REPLICAS
 fi
+
+

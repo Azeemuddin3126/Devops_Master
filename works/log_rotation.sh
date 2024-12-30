@@ -21,3 +21,7 @@ find "$ARCHIVE_DIR" -type f -name "*.gz" -mtime +$DAYS_TO_KEEP -exec rm {} \;
 touch "$LOG_DIR/$LOG_FILE"
 
 echo "Log rotation completed: $log_date."
+
+# crontab -e
+
+# 0 1 * * * /path/to/log_rotate.sh

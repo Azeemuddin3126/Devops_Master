@@ -15,3 +15,4 @@ if [ -n "$FAILED_PODS" ]; then
 else
   echo "All pods are healthy."
 fi
+
